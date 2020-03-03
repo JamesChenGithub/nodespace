@@ -5,6 +5,7 @@
     <title>企业微信界面</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="js/jquery-3.4.1.min.js"></script>
     <style type="text/css">
         body {
             background-color: rgb(230, 230, 230);
@@ -17,7 +18,7 @@
 
         /* window css */
         .phone {
-            background-image: url(./static/img/phone_bg.png);
+            background-image: url('img/phone_bg.png');
             width: 543px;
             height: 931px;
             margin: 50px auto;
@@ -69,6 +70,22 @@
             background-color: blueviolet;
         }
 
+        #msgnavcontroller {
+            background-color: blueviolet;
+        }
+
+        #contactnavcontroller {
+            background-color: yellowgreen;
+        }
+
+        #platformnavcontroller {
+            background-color: rebeccapurple;
+        }
+
+        #minenavcontroller {
+            background-color: cornsilk;
+        }
+
         .navbar {
             width: 100%;
             height: 44px;
@@ -91,6 +108,10 @@
             height: 100%;
             display: block;
             border-right: 1px solid black;
+        }
+
+        .tabbar :hover {
+            background-color: rgb(60, 125, 215);
         }
 
         .tabbaritem :last-child {
@@ -125,6 +146,43 @@
             right: 20%;
         }
     </style>
+    <script>
+        function onClickTabbarItem(barid) {
+            
+            console.log("onclick : " + barid);
+            {
+                var menucontendid = barid + 'navcontroller';
+                $('.tabnavs').find('.navcontroller').each(function (index, element) {
+                    const eid = element.id;
+                    
+                    if (menucontendid === eid) {
+                        console.log(" show elementid = " + eid);
+                        document.getElementById(eid).style.display = "block";
+                    } else {
+                        console.log(" hide elementid = " + eid);
+                        document.getElementById(eid).style.display = "none";
+                    }
+                });
+            }
+            {
+                const tabs = $('.tabbar').find('.tabbaritem');
+                console.log(tabs);
+                $('.tabbar').find('.tabbaritem').each(function (index, element) {
+                    const eid = element.id;
+                    console.log("tabbarid : " + eid);
+                    if (barid === eid) {
+                        console.log(" select tarid = " + eid);
+                        document.getElementById(eid).style.backgroundColor = "rgba(50, 110, 200, 0.5)";
+                    } else {
+                        console.log(" normal tarid = " + eid);
+                        document.getElementById(eid).style.backgroundColor = "rgb(240, 240, 240)";
+                    }
+                })
+            }
+        }
+        
+    </script>
+    
 </head>
 
 <body>
@@ -154,20 +212,20 @@
                 </div>
 
                 <div class='tabbar'>
-                    <div class='tabbaritem' id='msgtab'>
+                    <div class='tabbaritem' id='msg' onclick="onClickTabbarItem(this.id)">
                         <img></img>
                         <span>消息</span>
 
                     </div>
-                    <div class='tabbaritem' id='contacttab'>
+                    <div class='tabbaritem' id='contact' onclick="onClickTabbarItem(this.id)">
                         <img></img>
                         <span>通讯录</span>
                     </div>
-                    <div class='tabbaritem' id='platformtab'>
+                    <div class='tabbaritem' id='platform' onclick="onClickTabbarItem(this.id)">
                         <img></img>
                         <span>工作台</span>
                     </div>
-                    <div class='tabbaritem' id='minetab'>
+                    <div class='tabbaritem' id='mine' onclick="onClickTabbarItem(this.id)">
                         <img></img>
                         <span>我</span>
                     </div>
@@ -175,6 +233,12 @@
             </div>
         </div>
     </div>
+
+    <script>
+        (function () {
+            onClickTabbarItem('msg')
+        })()
+    </script>
 </body>
 
 </html>
