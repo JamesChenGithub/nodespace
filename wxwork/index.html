@@ -21,7 +21,7 @@
             background-image: url('img/phone_bg.png');
             width: 543px;
             height: 931px;
-            margin: 50px auto;
+            margin: 0px auto;
             background-color: white;
         }
 
@@ -35,6 +35,15 @@
             display: block;
             background-color: black;
             border-radius: 2px;
+        }
+
+        .homebutton{
+            width: 72px;
+            height: 72px;
+            border-radius: 36px;
+            position: relative;
+            left: 237px;
+            bottom: -137px;
         }
 
         /* 状态栏*/
@@ -180,6 +189,19 @@
                 })
             }
         }
+
+        function onClickHome() {
+            // visibility:hidden
+           const ele =  document.getElementById('rootwindowcontroller');
+           console.log(ele);
+           const show = ele.style.visibility === 'hidden';
+           if (show) {
+            ele.style.visibility = null;
+           } else {
+            ele.style.visibility = 'hidden';
+           }
+           
+        }
         
     </script>
     
@@ -191,7 +213,7 @@
             <div class="statusbar">
                 <span>状态栏</span>
             </div>
-            <div class="tabcontroller">
+            <div class="tabcontroller" id='rootwindowcontroller'>
                 <div class='tabnavs'>
                     <div class='navcontroller' id='msgnavcontroller'>
                         <div class='navbar' id='msgnavbar'><span>消息(2条)</span></span></div>
@@ -231,6 +253,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="homebutton" onclick="onClickHome()">
         </div>
     </div>
 
