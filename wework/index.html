@@ -35,9 +35,13 @@
             display: block;
             background-color: black;
             border-radius: 2px;
+            background: url('img/homebg.jpeg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
         }
 
-        .homebutton{
+        .homebutton {
             width: 72px;
             height: 72px;
             border-radius: 36px;
@@ -77,10 +81,81 @@
             top: 0px;
             bottom: 0px;
             background-color: blueviolet;
+
         }
+
 
         #msgnavcontroller {
             background-color: blueviolet;
+
+        }
+
+        #msgtable {
+            width: 100%;
+            overflow: hidden;
+            border-spacing: 0px;
+            border: 1px solid rgb(240, 140, 140);
+        }
+
+        tbody {
+
+            display: inline-block;
+            width: 100%;
+            position: absolute;
+            top: 44px;
+            bottom: 0px;
+            overflow: auto;
+            background-color: seashell;
+        }
+
+        th,
+        td {
+            width: 100%;
+            height: 100%;
+            border-spacing: 0px;
+            margin: 0px;
+            padding: 0px;
+        }
+
+
+        .msgitem {
+            width: 330px;
+            height: 44px;
+            display: inline-block;
+            background-color: white;
+            border-bottom: 1px solid rgb(225, 225, 225);
+        }
+
+        /* .msgitem :first-child {
+            background-color: rgb(242, 242, 242);
+        } */
+
+        .msgicon {
+            width: 36px;
+            height: 36px;
+            margin: 0px 4px;
+            display: inline-block;
+            background-color: seagreen;
+        }
+
+        /* #msgtable tbody tr:nth-child(even) td,
+        #msgtable tbody tr:nth-child(even) th {
+            background-color: #D4FFFF;
+        }
+        #msgtable tbody tr:nth-child(odd) td,
+
+        #msgtable tbody tr:nth-child(odd) th {
+            background-color: #D4BFFF;
+        } */
+
+        .msgcontent {
+            display: inline-block;
+        }
+
+        .msgcontent>span {
+            display: block;
+            width: 100%;
+            margin: 0px auto;
         }
 
         #contactnavcontroller {
@@ -105,8 +180,8 @@
             width: 100%;
             height: 44px;
             position: absolute;
-            left: 0px;
-            bottom: 0px;
+            left: 1px;
+            bottom: -1px;
             display: flex;
             background-color: rgb(246, 246, 246);
             /* border: 1px solid red; */
@@ -142,6 +217,16 @@
             display: block;
         }
 
+        .msgusernick {
+            color: black;
+        }
+
+        .msgdetail {
+            color: gray;
+        }
+
+        
+
         .navbar>span {
             display: block;
             width: 60%;
@@ -157,13 +242,13 @@
     </style>
     <script>
         function onClickTabbarItem(barid) {
-            
+
             console.log("onclick : " + barid);
             {
                 var menucontendid = barid + 'navcontroller';
                 $('.tabnavs').find('.navcontroller').each(function (index, element) {
                     const eid = element.id;
-                    
+
                     if (menucontendid === eid) {
                         console.log(" show elementid = " + eid);
                         document.getElementById(eid).style.display = "block";
@@ -192,19 +277,19 @@
 
         function onClickHome() {
             // visibility:hidden
-           const ele =  document.getElementById('rootwindowcontroller');
-           console.log(ele);
-           const show = ele.style.visibility === 'hidden';
-           if (show) {
-            ele.style.visibility = null;
-           } else {
-            ele.style.visibility = 'hidden';
-           }
-           
+            const ele = document.getElementById('rootwindowcontroller');
+            console.log(ele);
+            const show = ele.style.visibility === 'hidden';
+            if (show) {
+                ele.style.visibility = null;
+            } else {
+                ele.style.visibility = 'hidden';
+            }
+
         }
-        
+
     </script>
-    
+
 </head>
 
 <body>
@@ -217,7 +302,29 @@
                 <div class='tabnavs'>
                     <div class='navcontroller' id='msgnavcontroller'>
                         <div class='navbar' id='msgnavbar'><span>消息(2条)</span></span></div>
-                        <div class='viewcontroller' id='msgviewcontroller'></div>
+                        <div class='viewcontroller' id='msgviewcontroller'>
+                            <table id='msgtable'>
+                                <script>
+                                    (function () {
+                                        let msgtbhtm = "<tbody>";
+                                        for (i = 0; i < 100; i++) {
+                                            msgtbhtm += "<tr><td>";
+                                            msgtbhtm += "<div class='msgitem'>";
+                                            msgtbhtm += "<div class='msgicon'>"
+                                            msgtbhtm += "</div>";
+                                            msgtbhtm += "<div class='msgcontent'>"
+                                            msgtbhtm += "<span class='msgusernick'> user" + i + "</span>";
+                                            msgtbhtm += "<span class='msgdetail'> msg from  user" + i + "</span>";
+                                            msgtbhtm += "</div>";
+                                            msgtbhtm += "</div>";
+                                            msgtbhtm += "</td></tr>";
+                                        }
+                                        msgtbhtm += "</tbody>"
+                                        $('#msgtable').html(msgtbhtm)
+                                    })()
+                                </script>
+                            </table>
+                        </div>
                     </div>
                     <div class='navcontroller' id='contactnavcontroller'>
                         <div class='navbar' id='contactnavbar'><span>公司架构</span></div>
@@ -259,9 +366,9 @@
     </div>
 
     <script>
-        (function () {
-            onClickTabbarItem('msg')
-        })()
+            (function () {
+                onClickTabbarItem('msg')
+            })()
     </script>
 </body>
 
