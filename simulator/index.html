@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>企业微信界面</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <style type="text/css">
+        body {
+            background-color: rgb(230, 230, 230);
+        }
+
+        div {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        /* window css */
+        .phone {
+            background-image: url('img/phone_bg.png');
+            width: 543px;
+            height: 931px;
+            margin: 0px auto;
+            background-color: white;
+        }
+
+        .window {
+            width: 330px;
+            height: 595px;
+            margin: 50px auto;
+            position: relative;
+            left: 2px;
+            top: 160px;
+            display: block;
+            background-color: black;
+            border-radius: 2px;
+            background: url('img/homebg.jpeg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .homebutton {
+            width: 72px;
+            height: 72px;
+            border-radius: 36px;
+            position: relative;
+            left: 237px;
+            bottom: -137px;
+        }
+    </style>
+
+<link rel="import" href="app/appWindow.html">
+
+</head>
+
+<body>
+    <div class="phone">
+        <div class="window"> </div>
+        <div class="homebutton" onclick="onClickHome()"></div>
+    </div>
+</body>
+
+</html>
